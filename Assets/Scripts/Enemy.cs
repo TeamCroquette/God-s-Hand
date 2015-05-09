@@ -13,10 +13,10 @@ public class Enemy : MonoBehaviour
 	public float deathSpinMax = 100f;			// A value to give the maximum amount of Torque when dying
 
 
-	private SpriteRenderer ren;			// Reference to the sprite renderer.
-	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
-	private bool dead = false;			// Whether or not the enemy is dead.
-	private Score score;				// Reference to the Score script.
+	protected SpriteRenderer ren;			// Reference to the sprite renderer.
+	protected Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
+	protected bool dead = false;			// Whether or not the enemy is dead.
+	protected Score score;				// Reference to the Score script.
 
 	
 	void Awake()
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
 		HP--;
 	}
 	
-	void Death()
+	protected virtual void Death()
 	{
 		// Find all of the sprite renderers on this object and it's children.
 		SpriteRenderer[] otherRenderers = GetComponentsInChildren<SpriteRenderer>();
