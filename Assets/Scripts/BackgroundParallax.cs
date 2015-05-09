@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
-/*TestCommit*/
+
 public class BackgroundParallax : MonoBehaviour
 {
 	public Transform[] backgrounds;				// Array of all the backgrounds to be parallaxed.

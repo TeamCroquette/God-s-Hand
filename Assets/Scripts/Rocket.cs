@@ -29,7 +29,6 @@ public class Rocket : MonoBehaviour
 		{
 			// ... find the Enemy script and call the Hurt function.
 			col.gameObject.GetComponent<Enemy>().Hurt();
-			col.gameObject.GetComponent<EnemyBoss>().Hurt();
 
 			// Call the explosion instantiation.
 			OnExplode();

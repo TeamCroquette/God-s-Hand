@@ -13,10 +13,11 @@ public class Enemy : MonoBehaviour
 	public float deathSpinMax = 100f;			// A value to give the maximum amount of Torque when dying
 
 
-	protected SpriteRenderer ren;			// Reference to the sprite renderer.
-	protected Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
-	protected bool dead = false;			// Whether or not the enemy is dead.
-	protected Score score;				// Reference to the Score script.
+	private SpriteRenderer ren;			// Reference to the sprite renderer.
+	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
+	private bool dead = false;			// Whether or not the enemy is dead.
+	private Score score;				// Reference to the Score script.
+
 
 	
 	void Awake()
@@ -29,7 +30,6 @@ public class Enemy : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		// Create an array of all the colliders in front of the enemy.
 		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 
@@ -46,8 +46,9 @@ public class Enemy : MonoBehaviour
 		}
 
 		// Set the enemy's velocity to moveSpeed in the x direction.
-		GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);	
 
+			GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x-1 * (moveSpeed*2), GetComponent<Rigidbody2D>().velocity.y);
+			
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
 		if(HP == 1 && damagedEnemy != null)
 			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
@@ -65,7 +66,7 @@ public class Enemy : MonoBehaviour
 		HP--;
 	}
 	
-	protected virtual void Death()
+	void Death()
 	{
 		// Find all of the sprite renderers on this object and it's children.
 		SpriteRenderer[] otherRenderers = GetComponentsInChildren<SpriteRenderer>();
